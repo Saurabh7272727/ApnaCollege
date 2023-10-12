@@ -12,13 +12,11 @@ const LoginHandler = async (req, res) => {
     await mongooseData?.findOne({
         firstName: req.params.firstName, password: req.params.password
     }).then((data) => {
-        if (data?.firstName === req.params.firstName && data?.password === password) {
+        if (data?.firstName == req.params.firstName && data?.password == password) {
             res.json(data);
-        } else {
-            res.json({ message: "your password is incorrect" });
+        } else if (data?.firstName !== req.params.firstName || data?.password !== password) {
+            res.json({ error: 'invalid' });
         }
-    }).catch((e) => {
-        console.log(e);
     })
 }
 
@@ -62,7 +60,14 @@ const PostSiginHandler = async (req, res) => {
 
 const AccountHandler = async (req, res) => {
     await mongooseData?.findOne({ firstName: req.params.firstName, _id: req.params.id }).then((data) => {
-        res.json(data);
+        if (req.params.id === undefined) {
+            res.json({ message: "hello" });
+        } else {
+            res.json(data);
+        }
+
+    }).catch((err) => {
+        console.error(err);
     })
 }
 module.exports = { HomeHandler, SiginHandler, PostSiginHandler, LoginHandler, AccountHandler };
