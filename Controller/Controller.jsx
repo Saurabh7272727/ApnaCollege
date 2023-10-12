@@ -62,12 +62,7 @@ const PostSiginHandler = async (req, res) => {
 
 const AccountHandler = async (req, res) => {
     await mongooseData?.findOne({ firstName: req.params.firstName, _id: req.params.id }).then((data) => {
-        console.log(typeof data._id);
-        if (data?.firstName == req.params.firstName && data?._id == req.params.id) {
-            res.json(data);
-        } else if (data?.firstName !== req.params.firstName && data?._id !== req.params.id) {
-            res.json({ error: "Invalid id and user name" });
-        }
+        res.json(data);
     })
 }
 module.exports = { HomeHandler, SiginHandler, PostSiginHandler, LoginHandler, AccountHandler };
