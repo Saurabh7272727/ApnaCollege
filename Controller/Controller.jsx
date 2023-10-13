@@ -1,7 +1,7 @@
 
 const homeData = require('../JsonData/HomeData.json');
 const mongooseData = require('../MongoDB/MongoDB.jsx');
-
+const img = require('../JsonData/img.json');
 const HomeHandler = async (req, res) => {
     res.status(200).json(homeData);
 }
@@ -45,7 +45,7 @@ const PostSiginHandler = async (req, res) => {
                 password: req.body.password
             }).then((data) => {
                 console.log(data);
-                res.json({ message: "your form is submit", tip: `you user name is ${req.body.firstName}`, data: `your paasword is ${req.body.password} remember your password` });
+                res.render('page', { name: data?.firstName, pass: data?.password });
             });
         }
 
@@ -70,4 +70,8 @@ const AccountHandler = async (req, res) => {
         console.error(err);
     })
 }
-module.exports = { HomeHandler, SiginHandler, PostSiginHandler, LoginHandler, AccountHandler };
+
+const imgHandler = (req, res) => {
+    res.json(img);
+}
+module.exports = { HomeHandler, SiginHandler, PostSiginHandler, LoginHandler, AccountHandler, imgHandler };
