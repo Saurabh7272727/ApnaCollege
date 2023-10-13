@@ -63,24 +63,28 @@
     ],
     "offers": [
         {
+            "img": "https://www.includehelp.com/dictionary/Images/btech.jpg",
             "name": "Bachelor of Vocational Studies [B.Voc.] (Software Development)",
             "year": "3 years",
             "degree": "Degree",
             "time": "full time"
         },
         {
+            "img": "https://www.includehelp.com/dictionary/Images/btech.jpg",
             "name": "Bachelor of Technology [B.Tech]",
             "year": "4 years",
             "degree": "Degree",
             "time": "full time"
         },
         {
+            "img": "https://www.includehelp.com/dictionary/Images/btech.jpg",
             "name": "Bachelor of Technology [B.Tech] {Lateral}",
             "year": "3 years",
             "degree": "Degree",
             "time": "full time"
         },
         {
+            "img": "https://www.includehelp.com/dictionary/Images/btech.jpg",
             "name": "Diploma in Engineering (Polytechnic)",
             "year": "3 years",
             "degree": "Degree",
