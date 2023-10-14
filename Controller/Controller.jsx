@@ -7,6 +7,7 @@ const HomeHandler = async (req, res) => {
 }
 
 const fs = require('fs');
+const { $Size } = require('sift');
 
 
 const LoginHandler = async (req, res) => {
@@ -118,4 +119,17 @@ const DeleteHandlerAll = async (req, res) => {
         res.send("<h1>successfully delete all</h1>");
     })
 }
-module.exports = { HomeHandler, SiginHandler, PostSiginHandler, LoginHandler, AccountHandler, imgHandler, UpdateHandler, DeleteHandler, DeleteHandlerAll };
+
+const VerifyHandler = async (req, res) => {
+    const email = req.body.email;
+    await mongooseData?.findOne({ email: email }).then((data) => {
+        if (data === null) {
+            res.send("<h4>Invalid email please create account then use collegeDekho</h4>");
+        } else {
+            res.json(data);
+        }
+    }).catch((err) => {
+        res.send(err.message);
+    })
+}
+module.exports = { HomeHandler, SiginHandler, PostSiginHandler, LoginHandler, AccountHandler, imgHandler, UpdateHandler, DeleteHandler, DeleteHandlerAll, VerifyHandler };
