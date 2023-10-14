@@ -6,6 +6,8 @@ const HomeHandler = async (req, res) => {
     res.status(200).json(homeData);
 }
 
+const fs = require('fs');
+
 
 const LoginHandler = async (req, res) => {
     const password = Number(req.params.password);
@@ -17,6 +19,8 @@ const LoginHandler = async (req, res) => {
         } else if (data?.firstName !== req.params.firstName || data?.password !== password) {
             res.json({ error: 'invalid' });
         }
+    }).catch((err) => {
+        res.send(err.message);
     })
 }
 
@@ -74,4 +78,44 @@ const AccountHandler = async (req, res) => {
 const imgHandler = (req, res) => {
     res.json(img);
 }
-module.exports = { HomeHandler, SiginHandler, PostSiginHandler, LoginHandler, AccountHandler, imgHandler };
+
+
+const UpdateHandler = async (req, res) => {
+    const id = req.params.id;
+    await mongooseData?.findOne({ _id: id }).then((data) => {
+        if (req.body.firstName) {
+            const updatedata = mongooseData?.updateMany({ _id: data?._id }, { firstName: req.body.firstName }).then((data) => {
+                res?.send("<h3>successfully update your userName</h3>");
+            })
+        } else if (req.body.lastName) {
+            const updatedata = mongooseData?.updateMany({ firstName: data?.firstName }, { lastName: req.body.lastName }).then((data) => {
+                res?.send("<h1>successfully update your lastName</h1>");
+            })
+        } else if (req.body.password) {
+            const updatedata = mongooseData?.updateMany({ firstName: data?.firstName }, { password: req.body.password }).then((data) => {
+                res?.send("<h1>successfully update your password</h1>");
+            })
+        } else if (req.body.email) {
+            const updatedata = mongooseData?.updateMany({ firstName: data?.firstName }, { email: req.body.email }).then((data) => {
+                res?.send("<h1>successfully update your email</h1>");
+            })
+        } else if (req.body.year) {
+            const updatedata = mongooseData?.updateMany({ firstName: data?.firstName }, { year: req.body.year }).then((data) => {
+                res?.send("<h1>successfully update your Status</h1>");
+            })
+        }
+    });
+}
+
+const DeleteHandler = async (req, res) => {
+    await mongooseData?.deleteOne({ _id: req.body.password }).then(() => {
+        res.send("<h1>successfully delete your account</h1>");
+    })
+}
+
+const DeleteHandlerAll = async (req, res) => {
+    await mongooseData?.deleteMany({}).then((data) => {
+        res.send("<h1>successfully delete all</h1>");
+    })
+}
+module.exports = { HomeHandler, SiginHandler, PostSiginHandler, LoginHandler, AccountHandler, imgHandler, UpdateHandler, DeleteHandler, DeleteHandlerAll };
