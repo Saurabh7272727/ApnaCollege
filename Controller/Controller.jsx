@@ -139,4 +139,8 @@ const VerifyHandler = async (req, res) => {
 const EventHandler = async (req, res) => {
     await res.json(evnetHome);
 }
-module.exports = { HomeHandler, SiginHandler, PostSiginHandler, LoginHandler, AccountHandler, imgHandler, UpdateHandler, DeleteHandler, DeleteHandlerAll, VerifyHandler, EventHandler };
+const EventDataPage = require('../JsonData/Event/EventPageData.json');
+const EventPageHandler = async (req, res) => {
+    res.json(EventDataPage);
+}
+module.exports = { HomeHandler, SiginHandler, PostSiginHandler, LoginHandler, AccountHandler, imgHandler, UpdateHandler, DeleteHandler, DeleteHandlerAll, VerifyHandler, EventHandler, EventPageHandler };
