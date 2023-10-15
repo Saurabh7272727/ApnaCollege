@@ -2,6 +2,8 @@
 const homeData = require('../JsonData/HomeData.json');
 const mongooseData = require('../MongoDB/MongoDB.jsx');
 const img = require('../JsonData/img.json');
+const evnetHome = require('../JsonData/Event/EventHome.json');
+
 const HomeHandler = async (req, res) => {
     res.status(200).json(homeData);
 }
@@ -132,4 +134,9 @@ const VerifyHandler = async (req, res) => {
         res.send(err.message);
     })
 }
-module.exports = { HomeHandler, SiginHandler, PostSiginHandler, LoginHandler, AccountHandler, imgHandler, UpdateHandler, DeleteHandler, DeleteHandlerAll, VerifyHandler };
+
+
+const EventHandler = async (req, res) => {
+    await res.json(evnetHome);
+}
+module.exports = { HomeHandler, SiginHandler, PostSiginHandler, LoginHandler, AccountHandler, imgHandler, UpdateHandler, DeleteHandler, DeleteHandlerAll, VerifyHandler, EventHandler };
